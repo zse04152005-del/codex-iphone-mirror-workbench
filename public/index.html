@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e1522">
+  <title>手机工作台 · Codex</title>
+  <link rel="icon" href="/phone-workbench-icon.png" type="image/png">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><img class="brand-mark" src="/phone-workbench-icon.png" alt=""><div><strong>手机工作台</strong><small>CODEX · IPHONE MIRRORING</small></div></div>
+      <div class="top-status"><span id="deviceDot" class="status-dot"></span><span id="deviceStatus">正在检查镜像…</span></div>
+      <div class="top-actions">
+        <label class="select-field model-field"><span>模型 <small id="modelHint">选择执行模型</small></span><select id="modelSelect" aria-label="选择模型"></select></label>
+        <label class="select-field effort-field"><span>思考</span><select id="effortSelect" aria-label="选择思考档位">
+          <option value="">自动</option><option value="low">低</option><option value="medium">中</option><option value="high">高</option><option value="xhigh">极高</option>
+        </select></label>
+        <button id="notifyBtn" class="icon-button" title="开启桌面提醒" aria-label="开启桌面提醒"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10 21h4"/></svg></button>
+        <button id="connectBtn" class="primary small">连接镜像</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="phone-panel" id="phonePanel">
+        <div class="panel-heading"><div><span class="eyebrow">LIVE DEVICE</span><h2>手机画面</h2></div><span id="frameStatus" class="connection-pill">等待连接</span></div>
+        <div class="phone-stage">
+          <img id="phoneFrame" alt="实时 iPhone 镜像画面" hidden>
+          <div id="screenEmpty" class="screen-empty"><span class="signal-icon">◉</span><strong>等待镜像画面</strong><p>打开 Mac 的 iPhone 镜像，手机可保持锁屏。</p></div>
+        </div>
+        <div class="phone-controls">
+          <button id="manualBtn" class="secondary">手动接管：关闭</button>
+          <button id="homeBtn" class="secondary">主屏幕</button>
+          <button id="refreshBtn" class="secondary">刷新</button>
+          <button id="expandBtn" class="secondary" aria-label="放大手机画面">放大</button>
+        </div>
+        <p class="phone-hint">这里直接显示镜像原始画面；开启手动接管后可点击画面操作。</p>
+      </section>
+
+      <section class="agent-panel">
+        <div class="panel-heading"><div><span class="eyebrow">COMMAND CENTER</span><h2>给 Agent 下任务</h2></div><span id="agentStatus" class="agent-status">空闲</span></div>
+        <p class="agent-intro">描述你希望完成的结果。发送、提交和下单前，Agent 会把具体内容交给你决定。</p>
+        <form id="composer" class="composer">
+          <label for="prompt" class="sr-only">任务指令</label>
+          <textarea id="prompt" rows="3" placeholder="例如：打开淘宝搜索一款键盘，比较价格与评价，不下单。" required></textarea>
+          <div class="composer-bottom"><label class="target-field">目标应用 <select id="targetApp"><option value="">自动识别</option><option value="taobao">淘宝</option><option value="douyin">抖音</option><option value="wechat">微信</option><option value="feishu">飞书</option><option value="meituan">美团</option><option value="xiaohongshu">小红书</option><option value="notes">备忘录</option></select></label><label class="due-field">决策截止 <input id="dueAt" type="datetime-local"></label><button id="sendBtn" type="submit" class="primary">开始任务 <span>↗</span></button></div>
+        </form>
+
+        <nav class="toolbox" aria-label="常用任务工具栏">
+          <div class="section-heading"><div><span class="eyebrow">SHORTCUTS</span><h3>常用任务工具栏</h3></div><span class="section-note">点选后可修改指令</span></div>
+          <div class="tool-grid">
+            <button type="button" data-prompt="帮我查看最近需要回复的消息，整理待回复事项并拟好回复；发送前让我确认。"><span>✉</span>整理消息</button>
+            <button type="button" data-prompt="打开飞书，找到今天需要填写的报表，核对字段并填写有依据的内容；提交前让我确认。"><span>▦</span>飞书报表</button>
+            <button type="button" data-prompt="帮我挑一份午餐外卖，比较总价和送达时间，准备好订单供我确认；支付由我完成。"><span>♨</span>准备外卖</button>
+            <button type="button" data-prompt="打开抖音，搜索【关键词】，整理相关内容，不点赞或发布。"><span>▶</span>抖音搜索</button>
+            <button type="button" data-prompt="打开淘宝，搜索【商品名称】，比较价格、规格和评价，不下单。"><span>◈</span>淘宝搜索</button>
+            <button type="button" data-prompt="打开微信，查看【联系人或群聊】的最新消息，概括重点，不发送消息。"><span>●</span>查看微信</button>
+            <button type="button" data-prompt="查看今天的日历安排，列出时间和待办事项，不修改日程。"><span>▣</span>查看日程</button>
+            <button type="button" data-prompt="打开手机备忘录，查找【主题】，整理相关记录，不修改原文。"><span>≡</span>查备忘录</button>
+            <button type="button" data-prompt="打开购物应用，查看【订单或快递】，告诉我当前物流状态，不修改订单。"><span>⌁</span>查快递</button>
+            <button type="button" data-prompt="打开小红书，搜索【主题】，整理值得参考的内容，不点赞或发布。"><span>✳</span>小红书搜索</button>
+          </div>
+        </nav>
+
+        <section class="schedule-panel">
+          <div class="section-heading"><div><span class="eyebrow">AUTOMATION</span><h3>定时任务</h3></div><button id="toggleSchedule" class="small-outline" type="button">＋ 新建</button></div>
+          <p class="section-note">到点自动加入 Agent 队列；关键最终动作仍会等待你决定。</p>
+          <form id="scheduleForm" class="schedule-form" hidden>
+            <label>名称 <input id="scheduleTitle" type="text" maxlength="80" placeholder="例如：每天检查未读消息"></label>
+            <label>执行指令 <textarea id="schedulePrompt" rows="3" maxlength="3000" placeholder="写清要查看或处理的内容…" required></textarea></label>
+            <div class="schedule-fields"><label>首次执行时间 <input id="scheduleAt" type="datetime-local" required></label><label>重复 <select id="scheduleRepeat"><option value="once">仅一次</option><option value="daily">每天</option><option value="weekly">每周</option></select></label></div>
+            <div class="schedule-actions"><button id="copyPromptBtn" type="button" class="secondary">使用当前指令</button><button type="submit" class="primary">保存定时任务</button></div>
+          </form>
+          <div id="schedules" class="schedule-list"><div class="empty-card">还没有定时任务。</div></div>
+        </section>
+
+        <section class="timeline-wrap"><div class="section-heading"><div><span class="eyebrow">ACTIVITY</span><h3>执行进度</h3></div></div><div id="timeline" class="timeline"><div class="timeline-empty">开始任务后，这里会显示执行过程与结果。</div></div></section>
+      </section>
+
+      <aside class="sidebar">
+        <div class="section-heading"><div><span class="eyebrow">INBOX</span><h2>待你决定</h2></div><span id="decisionCount" class="count">0</span></div>
+        <div id="decisions" class="decision-list"><div class="empty-card">当前没有待处理决定。</div></div>
+        <details id="historyPanel" class="history-panel" open><summary class="section-heading tasks-heading"><div><span class="eyebrow">HISTORY</span><h2>任务记录</h2></div><span class="history-summary-right"><span id="taskCount" class="count">0</span><span class="history-chevron">⌄</span></span></summary>
+          <div id="tasks" class="task-list"></div><button id="showMoreTasks" class="text-button show-more" type="button" hidden>显示更多任务</button>
+        </details>
+        <div class="sidebar-footer"><span class="eyebrow">REMINDER</span><label>决策截止前 <input id="reminderMinutes" type="number" min="1" max="1440" value="15"> 分钟提醒</label><button id="saveSettings" class="text-button">保存提醒设置</button></div>
+      </aside>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

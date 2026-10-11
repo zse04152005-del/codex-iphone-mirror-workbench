@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "summary", "decisionTitle", "decisionDetail", "resumeInstruction", "evidence"],
+  "properties": {
+    "status": { "type": "string", "enum": ["done", "needs_decision", "blocked"] },
+    "summary": { "type": "string" },
+    "decisionTitle": { "type": "string" },
+    "decisionDetail": { "type": "string" },
+    "resumeInstruction": { "type": "string" },
+    "evidence": { "type": "string" }
+  }
+}

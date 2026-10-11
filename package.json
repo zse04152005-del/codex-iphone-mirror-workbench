@@ -1,0 +1,13 @@
+{
+  "name": "codex-phone-workbench",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "check": "node --check server.mjs && node --check mcp-server.mjs && node --check lib/mirror.mjs && node --check lib/live-preview.mjs && node --check lib/target-app.mjs && node --check lib/runner.mjs && node --check lib/scheduler.mjs && node --check public/app.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
