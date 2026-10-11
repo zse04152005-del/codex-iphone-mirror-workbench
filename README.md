@@ -19,6 +19,10 @@ iPhone Mirror Workbench 是一个运行在本机的 Codex 手机工作台。它�
 
 *截图仅展示任务控制区，未包含真实手机画面或私人任务记录。连接后，左侧会显示实时 iPhone 镜像。*
 
+![在 Codex 中并排显示 iPhone 镜像与手机工作台](docs/assets/codex-mirror-in-action.png)
+
+*实际运行截图：Codex 中的 iPhone 镜像与手机工作台并排显示。*
+
 ## 复制一段提示词，让 Codex 帮你安装
 
 在 GitHub 代码块右上角点 **Copy**，将整段提示词发给这台 Mac 上的 Codex：

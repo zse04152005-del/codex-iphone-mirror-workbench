@@ -19,6 +19,10 @@ iPhone Mirror Workbench is a local dashboard for Codex-driven phone tasks. It br
 
 *The screenshot shows only the task controls. It excludes the real phone display and private task history. The live iPhone image appears in the left panel when connected.*
 
+![iPhone Mirroring and the workbench side by side in Codex](docs/assets/codex-mirror-in-action.png)
+
+*In action: iPhone Mirroring and the workbench displayed side by side in Codex.*
+
 ## Copy one prompt to install with Codex
 
 Click **Copy** in the top-right corner of this GitHub code block, then paste the complete prompt into Codex on your Mac:
